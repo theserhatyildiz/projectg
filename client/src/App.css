@@ -1,0 +1,1251 @@
+.container{
+    height: 100vh;
+    width:100%;
+    background-color: white;
+    color: black;
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+}
+
+/* register page css */
+
+.form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border:3px solid rgb(249, 106, 128);
+    row-gap:1rem;
+    padding: 1rem 0.75rem;
+    border-radius: 0.45rem;
+    background-color: rgb(233, 233, 233);
+}
+
+.form h1{
+    margin-left: 0.50rem;
+}
+
+.inp{
+    padding: 0.55rem 0.25rem;
+    text-indent: 0.25rem;
+    border-radius: 0.65rem;
+    border:2.5px solid black;
+    color: rgb(215, 55, 80);
+}
+
+.btn{
+    color: white;
+    background-color: rgb(215, 55, 80);
+    padding: 0.55rem 0.25rem;
+    border: none;
+    border-radius: 0.45rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+
+}
+
+.btn:hover {
+    background-color: rgb(200, 99, 114); 
+}
+
+.form p{
+    margin-left: 0.75rem;
+}
+
+a {
+    color: rgb(249, 106, 128);
+    text-decoration: none;  
+}
+
+.success{
+    width: 90%;
+    background-color: lightgreen;
+    color: rgb(1, 61, 45);
+    width: 50;
+    padding: 0.30rem;
+    border-radius: 0.25rem;
+}
+
+.forgotPass-p .success{
+   margin-top: 1rem;
+   margin-left: 0.55rem;
+}
+
+.spinner-container-forgotPassword{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0.75rem;
+    margin-left: 0.75rem;
+}
+
+.invisible-msg {
+    width: fit-content;
+    opacity: 0;
+    font-size: 0.1rem;
+    background-color: red;
+}
+
+.error{
+    width: 90%;
+    background-color: lightpink;
+    color: rgb(215, 55, 80);
+    padding: 0.30rem;
+    border-radius: 0.25rem;
+    font-weight: bold;  
+}
+
+.verify-msg-container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.verify-msg{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0rem;
+    text-align: center;
+    border: 3px solid rgb(215, 55, 80);
+    border-radius: 0.65rem;
+}
+
+.verify-msg button {
+    margin-top: 1.3rem;
+    padding: 0.25rem 1rem;
+}
+
+.verify-msg button a{
+    color: white;
+}
+
+.spinner-container-register {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 0.75rem;
+}
+
+/* search food page css */
+
+.search-container{
+    flex-direction: column;
+}
+
+.search {
+    width: 100%;
+    padding: 0.40rem;
+    /* background-color: rgb(242, 241, 247); */
+    border-radius: 0.65rem;
+    border: 3px solid lightpink;
+    position: relative;
+}
+
+.search-inp{
+    width: 100%;
+    border: none;
+    text-indent: 0.25rem;
+    font-size: 1rem;
+    /* background-color: rgb(242, 241, 247); */
+}
+
+.search-results{
+    width: 100%;
+    background-color: lightpink;
+    border-radius: 0.60rem;
+    padding: 0.625rem 0.325rem;
+    margin-top: 1.2rem;
+    position: absolute;
+    left:0;
+    max-height: 33rem;
+    overflow: auto;
+}
+
+.search-results::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar */
+}
+
+.spinner-container-searchFood{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 5rem;
+    height: 100vh;
+}
+
+
+/* food data display css */
+
+.fooddata-container{
+    display: flex;
+    align-items: flex-start;
+}
+
+.food{
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.75rem 0.85rem;
+    padding-bottom: 0.85rem;
+    background-color: white;
+    border-radius: 0.60rem;
+    border: 2px solid rgb(242, 241, 247);
+    row-gap: 0.35rem;
+}
+
+.food h3{
+    padding-left: 0.30rem; 
+    color: black;  
+    font-size: 1.3rem;
+}
+
+.eatenQuantity{
+    color: rgb(249, 106, 128);
+}
+
+.calorie{
+    color: rgb(249, 106, 128);
+}
+
+.macros{
+    width: 100%;
+}
+
+.macros .nutrient{
+    width: 100%;
+    padding: 0.625rem 0rem;
+    border-radius: 0.20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: white;
+    border-top: 1px solid rgb(239, 239, 242);
+    border-bottom: 1px solid rgb(239, 239, 242);
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    
+}
+.macro-details{
+    display: flex;
+    gap: 1rem;
+    margin-left: 0.30rem;
+}
+
+.nutrient .n-title{
+    font-weight: bold;
+    color: black;
+    font-size: 1.2rem;
+}
+
+.n-value{
+    color: black;
+    font-size: 1.2rem;
+}
+
+.macros .nutrient p{
+    margin-left: 0rem;
+}
+
+.inp-quant{
+    border: 2px solid rgb(227, 227, 227);
+    border-radius: 0.25rem;
+    text-indent: 0.25rem;
+    background-color: rgb(233, 233, 233);
+    padding: 0.65rem 0.25rem 0.65rem 0.25rem;
+    margin-top: 0.25rem;
+    width: 50%;
+    margin-bottom: 0.75rem;
+    text-align: center;
+    font-size: 0.85rem;
+    
+}
+
+.food-quantity-button{
+    display: flex;
+    flex-direction: column;
+}
+
+.meal-label-selection{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid rgb(239, 239, 242);
+    margin-bottom: 0.65rem;
+    padding-bottom: 1rem;
+}
+
+.meal-label{
+    padding-left: 0.30rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.meal-selection{
+    border: none;
+    font-size: 1.1rem;
+    color: rgb(249, 106, 128);
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+.food-quantity{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid rgb(239, 239, 242);
+    margin-bottom: 0.65rem;
+}
+
+.food-quantity span{
+    margin-left: 0.30rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.save-btn{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-add{
+    padding: 0.45rem 1rem;
+    border-radius: 0.75rem;
+    background-color: rgb(249, 106, 128);
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    margin: 1rem 0rem;
+}
+
+/* diet page css */
+
+/* Styles for the fixed date box and totals container */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: white; /* Adjust as needed */
+    z-index: 1000;
+    padding: 0.55rem 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollable-content {
+    margin-top: 100px; /* Adjust based on the height of your fixed header */
+    overflow-y: scroll; /* Always show a scrollbar */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+    width: 100%;
+}
+
+.scrollable-content::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome and Safari */
+}
+
+/* Adjust max-height to prevent content from overflowing */
+.scrollable-content {
+    max-height: calc(100vh - 100px); /* Adjust based on the height of your fixed header */
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Adjustments for the layout */
+.container.diet-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 0.65rem;
+    background-color:white; 
+    width: 100%;
+    margin-bottom: 4.5rem; /* adjustment for the gap between footer*/
+    margin-top: 0.9rem;
+}
+
+.fixed-header .day-date{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    white-space: nowrap;
+}
+
+.day-date button {
+    margin: 0 0.6rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: black ;
+    /* color: rgb(249, 106, 128); */
+}
+
+.day-date p {
+    text-transform: capitalize;
+    padding-left: 0.65rem;
+    color: black;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(249, 106, 128);
+}
+
+
+.fixed-header .date-box{
+    width: 50%;
+    margin: 0 0rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 0.35rem;
+    border: none;
+    background-color:white;
+    margin-bottom: 0.55rem;
+    margin-top: 0.25rem;
+    color: black;
+    /* color: rgb(249, 106, 128); */
+}
+
+.totals-container{
+    width: 100%;
+}
+
+.totals-container h3{
+    display: flex;
+    justify-content: flex-start;
+    font-size: 0.85rem;
+    color: white;
+    margin-left: 0.25rem;
+    margin-bottom: 0.1rem;
+}
+
+.total-macros{
+    width:100%;
+    background-color: rgba(13, 12, 12, 0.776);
+    padding: 0.1rem 0.5rem 0.1rem 0.5rem;
+    border: 2px solid black;
+    border-radius: 0.65rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.totals-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    border-top: 1px solid white;
+}
+
+.totals .n-title{
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: white;
+    margin-top: 0.25rem;
+}
+
+.totals .n-value{
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: rgb(243, 126, 144);
+}
+
+/* meal page css */
+
+.meal-container{
+    width:100%;
+    padding: 0.25rem 0.5rem;
+    background-color: rgb(233, 233, 233);
+    border-radius: 0.65rem;
+    color: black;
+    margin-bottom: 0.65rem;
+    margin-top: 0.85rem;
+}
+
+.meal-info{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.17);
+    margin-bottom: 0.35rem;
+}
+
+.summary{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-right: 0.45rem;
+    
+}
+
+.summary-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.70rem;
+}
+
+.s-title{
+    font-weight: bold;
+}
+
+.s-value {
+    margin-bottom: 0.15rem;
+}
+
+.meal-num {
+    padding-left: 0.55rem;
+    font-weight: bold;
+}
+
+.meal-total{
+    font-size: 0.5rem;
+}
+
+
+.meal-container .btn {
+    border-radius: 2rem;
+    padding: 0rem 0.25rem;
+    width: 100%;
+    margin: 0.20rem 0.20rem;
+    cursor: pointer;
+    border: 1px solid rgb(215, 55, 80);
+    border-radius: 0.25rem;
+    background-color: transparent;
+    font-size: 0.75rem;
+}
+
+.item{
+    width:100%;
+    padding: 0.25rem 0.5rem;
+    background-color: rgb(203, 203, 203);
+    border-radius: 0.65rem;
+    margin-bottom: 0.25rem;
+}
+
+.food-info-container{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    /* margin-top: -0.25rem; */
+}
+
+.food-info{
+    display: flex;
+    gap: 0.25rem;
+}
+
+.item .food-heading{
+    font-size: 1rem;
+}
+
+.food-info-container .food-info h4{
+    font-size: 0.90rem;
+}
+
+.food-info-container .food-info p{
+    font-size: 0.90rem;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    vertical-align: middle;
+
+  }
+
+.fa-trash-can{
+    color: rgb(249, 106, 128);
+    margin-right: 0.25rem; 
+    font-size: 1rem;
+}
+
+.item h3{
+    font-size: 0.85rem;
+    color: black;
+}
+
+.item h4{
+    color: rgb(249, 106, 128);
+    font-size: 0.75rem;
+}
+
+.item p{
+    font-size: 0.75rem;
+    color:black;
+}
+
+.btn-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.btn-group-add{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:0.25rem;
+}
+
+.btn-group-add .btn{
+    color: rgb(249, 106, 128);
+}
+
+.btn-group-function{
+    color: black;
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-right: 0.25rem;
+}
+
+
+/* header page css */
+
+/* .header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    gap: 1rem;
+    border: 1.5px solid black;
+    border-radius: 0.65rem;
+    padding: 0.15rem 0.55rem;
+    margin-bottom: 0.75rem;
+    background-color: white;
+    font-weight: bold;
+    color: black;
+} */
+
+/* create food page css */
+
+.createfood-container{
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.createfood-container .form{
+    border: 3px solid black;
+}
+
+.createfood-container h1{
+    margin-left: 1rem;
+    color: rgb(249, 106, 128);
+    text-transform: uppercase;
+}
+.createfood-container span{
+    font-weight: bold;
+    margin-left: 1rem ;
+}
+
+.create-food-info{
+margin-top: 0.75rem;
+border: none;
+display: flex;
+flex-wrap: wrap;
+}
+
+.name-calorie-form{
+    width: 100%;
+}
+
+.name-calorie-form .name-form{
+    margin-left: 0.3rem;
+}
+
+.name-calorie-form .calorie-form{
+    margin-left: 0.3rem;
+}
+
+.inp-name{
+    width: 100%; 
+    text-indent: 0.25rem; 
+    border: 2px solid rgb(187, 187, 191);
+    border-radius: 0.25rem;
+    padding: 0.6rem 0 0.6rem 0;
+    font-size: 0.75rem;
+    background-color: white;
+}
+
+.inp-cal{
+    width: 100%; 
+    text-indent: 0.25rem;
+    border-radius: 0.25rem;
+    border: 2px solid rgb(187, 187, 191);
+    padding: 0.6rem 0 0.6rem 0;
+    font-size: 0.75rem;
+    background-color: white;
+}
+
+.food-info .n-title{
+    margin-left: 0.2rem;
+}
+
+.inp-create{
+    width: 90%;
+    border: 2px solid rgb(187, 187, 191);
+    border-radius: 0.25rem;
+    text-indent: 0.25rem;
+    background-color: white;
+    padding: 0.6rem 0 0.6rem 0;
+    font-size: 0.75rem;
+}
+
+.createfood-container .btn-add{
+    width: 100%;
+    margin-top: 0.75rem;
+    margin-left: 0;
+    padding: 0.50rem 0.50rem;
+}
+
+
+
+/* track weight page css */
+
+.weight-container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    /* padding: 1rem 1rem; */
+    padding: 1rem 1.5rem 2.8rem 1.5rem; /* adjustment for the gap between footer*/
+    height: auto;  
+}
+
+.weight-container span{
+    font-weight: bold;
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+}
+
+.weight-entry{
+    border: 2px solid black;
+    border-radius: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    background-color: rgb(233, 233, 233);
+}
+
+.weight-entry p{
+    margin-left: 0rem;
+}
+
+.weight-entry-start{
+    display: flex;
+    flex-direction: column;
+}
+
+.weight-entry .date-box{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 0.75rem;
+    border-radius: 0.35rem;
+    border: none;
+    background-color: rgb(203, 203, 203);
+    padding: 0.20rem 0.2rem;
+}
+
+.weight-entry-box{
+    display: flex;
+    flex-direction: column;
+    background-color:rgb(233, 233, 233);
+    }
+
+.weight-entry .form{
+    border: none;
+    padding: 0.45rem 2.5rem;
+    background-color: rgb(233, 233, 233);
+}
+
+.inp-weight{
+    width: 67%;
+    margin: 0 auto;
+    border:none;
+    border-radius: 0.35rem;
+    background-color: rgb(203, 203, 203);
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 200;
+    padding: 0.20rem 0.2rem;
+}
+
+.weight-entry-box-paraf{
+    border: 1px solid black;
+    border-radius: 0.65rem;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: rgb(233, 233, 233);
+    width: 100%;
+    font-size: 0.75rem;
+    padding: 0.1rem 0.25rem;
+}
+
+.weight-entry-box-wc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weight-entry-box-wc-question{
+    font-weight: bold;
+}
+
+label{
+    padding-left: 1.25rem;
+}
+
+label input{
+    margin-right: 0.20rem;
+}
+
+.start-date-box{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.start-date-box .fa-trash-can{
+    font-size: 0.8rem;
+    color: black;
+}
+
+.start-date-box button{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.start-date-display {
+
+    font-size: 0.75rem;
+}
+
+
+.weight-data{
+    display: flex;
+    gap: 0.55rem;
+    margin-bottom: 1rem;
+    background-color: rgba(13, 12, 12, 0.776);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.65rem;
+    width: 100%;
+    color: white;
+}
+
+.weight-data-info{
+    width: 100%;
+    display: column;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+/* .info-title-avg{
+    line-height: 1;
+    font-size: 0.85rem;
+}
+
+.info-subtitle-avg{
+    font-size: 0.85rem;
+}
+
+.info-title{
+    line-height: 1;
+    font-size: 0.85rem;
+}
+
+.info-subtitle{
+    font-size: 0.85rem;
+} */
+
+
+.info-value{
+    margin: 0.5rem 0;
+    border: 2px solid rgb(171, 169, 169);
+    border-radius: 0.65rem;
+    background-color: rgba(13, 12, 12, 0.776);
+    padding: 0.5rem 0.35rem;
+    color: rgb(249, 106, 128);
+}
+
+.info-value-avg{
+    margin: 0.5rem 0;
+    border: 2px solid rgb(171, 169, 169);
+    border-radius: 0.65rem;
+    background-color: rgba(13, 12, 12, 0.776);
+    padding: 0.5rem 0.35rem;
+    color: rgb(249, 106, 128);
+}
+
+.weight-entries-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgb(233, 233, 233);
+    border-radius: 0.65rem;
+    padding-bottom: 1.5rem;
+}
+
+.weight-entries-container h2{
+    margin-top: 0.45rem;
+}
+
+.weight-log-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.weight-log{
+    width: 90%;
+    gap: 1rem;
+    background-color: rgb(203, 203, 203);
+    padding: 0.5rem 0.5rem;
+    border-radius: 0.65rem;
+    border: 2px solid rgba(128, 128, 128, 0.346);
+    margin-bottom: 0.25rem;
+}
+
+.start-date-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.weight-log.start-date {
+    background-color: lightpink;
+    text-align: center;
+}
+
+.start-date-text{
+    margin-top: 0.25rem;
+    color: rgb(215, 55, 80);
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.weight-log-items{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.items-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(233, 233, 233);
+    padding: 0.15rem 1rem;
+    border-radius: 0.35rem;
+}
+
+.weight-track-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.weight-track-btn .btn-add{
+    width: 70%;
+}
+
+.weight-msg{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.weight-entry .form .success{
+    width: 65%;
+    background-color: lightgreen;
+    color: rgb(1, 61, 45);
+    padding: 0.10rem 1.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+
+/* meal function page css */
+
+.meal-function-container{
+    width: 100%;
+}
+.createfood-container h1{
+    margin-bottom: 0.50rem;
+}
+
+.meal-function-container li{
+    margin-bottom: 0.45rem;
+    padding-bottom: 0.55rem;
+    list-style: none;
+    border-bottom: 1px solid rgb(227, 224, 224);
+}
+
+.check-box-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.check-box{
+    margin-right: 0.35rem;
+}
+
+.meal-function-container .food-info h4{
+    color: rgb(249, 106, 128);
+    font-size: 0.75rem;
+}
+
+.meal-function-container .food-info p{
+    font-size: 0.75rem;
+}
+
+.meal-function-date-box{
+    border: none;
+    width: 55%;
+    border-radius: 0.35rem;
+    border: none;
+    background-color: rgb(244, 242, 242);
+    margin-right: 1rem;
+    padding: 0.1rem 1rem;
+    font-size: 1rem;
+}
+
+.meal-function-footer-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Set minimum height to fill the viewport */
+}
+
+.meal-function-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(13, 12, 12, 0.815);
+    padding: 0.625rem 0.625rem 3rem 0.625rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.meal-function-footer-button {
+    color: rgb(249, 106, 128);
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+
+.success-copy{
+    width: 90%;
+    background-color: lightgreen;
+    color: rgb(1, 61, 45);
+    width: 50;
+    padding: 0.30rem;
+    border-radius: 0.25rem;
+    margin-top: 1rem;
+}
+
+/* more page css */
+
+.more-container{
+    display: flex;
+    align-items: flex-start;
+}
+
+.more-list-heading-group{
+    width: 100%;
+}
+
+.more-list-heading-group h2{
+    margin-left: 0.55rem;
+    margin-bottom: 0.55rem;
+}
+
+.more-list{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.list-settings{
+    background-color: rgb(233, 233, 233);
+    list-style: none;
+    padding: 1rem 1rem;
+    width: 100%;
+    border-radius: 0.65rem;
+    padding: 0.25rem 0.5rem;
+}
+
+.list-settings a{
+    color: black;
+}
+
+.list-items{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    margin-bottom: 0.45rem;
+    border-radius: 0.65rem;
+    padding: 0.25rem 0.5rem;
+}
+
+
+
+/* account page css */
+
+.account-container{
+    display: flex;
+    align-items: flex-start;
+
+}
+
+.account-list{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.list-headings {
+    margin-left: 0.35rem;
+    margin-bottom: 0.65rem;
+    font-weight: bold;
+}
+
+.btn-account-delete{
+    font-size: 1rem;
+}
+
+.btn-logout{
+    width: 100%;
+    background-color: rgb(215, 55, 80);
+    color: white;
+    background-color: rgb(215, 55, 80);
+    padding: 0.25rem 0.25rem;
+    border: none;
+    border-radius: 0.65rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 0.50rem;
+
+}
+
+.bottom-sheet-account-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0rem 1rem;
+}
+
+.bottom-sheet-account-group input{
+text-indent: 0.55rem;
+padding: 0.5rem 0.5rem;
+border-radius: 0.65rem;
+border: 3px solid rgb(249, 106, 128);
+}
+
+.bottom-sheet-account-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.65rem;
+    width: 100%;
+}
+
+
+.bottom-sheet-account-buttons .btn{
+    padding: 0.3rem 1rem;
+    background-color: rgb(215, 55, 80);
+    width: 100;
+    flex: 1;
+}
+
+.bottom-sheet-account-group p{
+    margin-top: 0.35rem;
+}
+
+.spinner-container-account{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0.45rem;
+    margin-left: 0.75rem;
+}
+
+.success-account{
+    width: 100%;
+    background-color: lightgreen;
+    color: rgb(1, 61, 45);
+    width: 50;
+    padding: 0.30rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+.error-account{
+    width: 100%;
+    background-color: lightpink;
+    color: rgb(215, 55, 80);
+    padding: 0.30rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+
+/* about page css */
+
+.about-container{
+    display: flex;
+    align-items: flex-start;
+
+}
+
+.about-list{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.list-headings {
+    margin-left: 0.35rem;
+    margin-bottom: 0.65rem;
+    font-weight: bold;
+}
+
+/* footer css */
+
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    list-style: none;
+    text-decoration: underline;
+    text-decoration-color: white;
+    text-underline-offset: 8px;
+    gap: 1rem;
+    /* border-radius: 0.65rem 0.65rem 0 0; */
+    padding: 0.85rem 0.55rem;
+    background-color: rgba(13, 12, 12, 0.815);
+    font-weight: bold;
+    color: white;
+    z-index: 1000;
+
+}
+
+.footer li{
+    margin-bottom: 2rem;
+}
