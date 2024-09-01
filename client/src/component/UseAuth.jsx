@@ -76,6 +76,45 @@ export function useAuth() {
     }
   }
 
+  // Function to fetch data with token handling
+  async function fetchData(url) {
+    const storedUser = localStorage.getItem("app-user");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      const accessToken = parsedUser?.token;
+
+      if (accessToken) {
+        const now = Math.floor(Date.now() / 1000);
+        const { exp: accessTokenExp } = jwtDecode(accessToken);
+
+        if (now >= accessTokenExp) {
+          // Token has expired, refresh it
+          await refreshAccessToken(parsedUser);
+        }
+      }
+    }
+
+    // Now fetch the data using the valid token
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${parsedUser?.token}`,
+        "Content-Type": "application/json"
+      },
+      credentials: 'include'
+    });
+
+    if (!response.ok) {
+      console.error('Failed to fetch data:', response.statusText);
+      if (response.status === 401) {
+        // Token is invalid, try refreshing it again
+        await refreshAccessToken(parsedUser);
+        return fetchData(url); // Retry after refreshing the token
+      }
+    }
+
+    return response.json();
+  }
+
   // Fetch CSRF token on initial mount
   useEffect(() => {
     fetchCsrfToken();
@@ -104,5 +143,44 @@ export function useAuth() {
     return () => clearInterval(interval);
   }, [csrfToken]);
 
-  return { loggedUser, setLoggedUser, csrfToken };
+  // Add the session status check after inactivity
+  useEffect(() => {
+    // Function to check session status
+    async function checkSessionStatus() {
+      const storedUser = localStorage.getItem("app-user");
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        const accessToken = parsedUser?.token;
+
+        if (accessToken) {
+          const now = Math.floor(Date.now() / 1000);
+          const { exp: accessTokenExp } = jwtDecode(accessToken);
+
+          if (now >= accessTokenExp) {
+            // Token has expired, refresh it
+            await refreshAccessToken(parsedUser);
+          } else {
+            // Token is still valid, proceed with normal operation
+            console.log("Token is still valid, continuing...");
+          }
+        }
+      }
+    }
+
+    // Event listener for visibility change
+    function handleVisibilityChange() {
+      if (document.visibilityState === 'visible') {
+        // The app is active again, check the session status
+        checkSessionStatus();
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [csrfToken]);
+
+  return { loggedUser, setLoggedUser, csrfToken, fetchData }; // Expose fetchData function
 }

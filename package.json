@@ -29,6 +29,7 @@
     "sanitize-html": "^2.13.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "vite-plugin-pwa": "^0.20.2"
   }
 }
