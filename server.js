@@ -265,7 +265,7 @@ app.post('/refresh-token', async (req, res) => {
       res.cookie('refreshToken', newRefreshToken.token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Strict',
+        sameSite: 'Lax',
         maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days in milliseconds
       });
 
