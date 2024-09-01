@@ -153,7 +153,7 @@ export function useAuth() {
           const accessTokenMinutesLeft = (accessTokenExp - now) / 60;
           console.log(`Access token minutes left: ${accessTokenMinutesLeft}`);
 
-          if (accessTokenMinutesLeft <= 1) { // If the access token is about to expire in the next minute
+          if (accessTokenMinutesLeft <= 5) { // If the access token is about to expire in the next minute
             console.log("Access token about to expire, refreshing...");
             await refreshAccessToken(parsedUser);
           }
