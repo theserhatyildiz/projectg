@@ -183,7 +183,7 @@ export default defineConfig({
           runtimeCaching: [
             {
               urlPattern: ({ url }) => url.pathname.startsWith('/'),
-              handler: 'NetworkFirst',
+              handler: 'CacheFirst',
               options: {
                 cacheName: 'api-cache',
                 cacheableResponse: {
