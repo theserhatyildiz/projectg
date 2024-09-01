@@ -10,7 +10,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 export default function Diet() {
     // ------------------Variables------------------
 
-    const { loggedUser, currentDateView, setCurrentDateView } = useContext(UserContext);
+    const { loggedUser, currentDateView, setCurrentDateView, setLoggedUser } = useContext(UserContext);
     const [items, setItems] = useState([]); // Ensure initial state is an array
     const [total, setTotal] = useState({
         totalCalories: 0,
@@ -23,8 +23,7 @@ export default function Diet() {
     const [color] = useState("#d73750"); // Color state for ClipLoader
     const [csrfToken, setCsrfToken] = useState(""); // State to store CSRF token
 
-    // console.log("Diet items:", { items });
-    
+    // ------------------Functions------------------
 
     useEffect(() => {
         async function fetchCsrfToken() {
@@ -45,32 +44,90 @@ export default function Diet() {
         fetchCsrfToken();
     }, []);
 
-    // ------------------Functions------------------
+    // Function to refresh the access token
+    async function refreshAccessToken() {
+        try {
+            const response = await fetch("https://galwinapp-c654a544b729.herokuapp.com/refresh-token", {
+                method: "POST",
+                credentials: 'include',
+            });
+            if (response.ok) {
+                const data = await response.json();
+                // Assuming the new access token is in data.token
+                setLoggedUser((prevUser) => ({
+                    ...prevUser,
+                    token: data.token,
+                }));
+                return data.token;
+            } else {
+                console.error("Failed to refresh token:", response.statusText);
+                return null;
+            }
+        } catch (error) {
+            console.error("Error refreshing token:", error);
+            return null;
+        }
+    }
+
+    // Wrapper function to fetch data with token refresh logic
+    async function fetchWithTokenRefresh(url, options = {}) {
+        // If no token, refresh it
+        if (!loggedUser.token) {
+            const newToken = await refreshAccessToken();
+            if (!newToken) return null; // If token refresh failed, abort fetch
+            options.headers = {
+                ...options.headers,
+                "Authorization": `Bearer ${newToken}`,
+            };
+        }
+
+        // Make the fetch request
+        const response = await fetch(url, options);
+
+        // If unauthorized, try refreshing the token
+        if (response.status === 401) {
+            const newToken = await refreshAccessToken();
+            if (!newToken) return null; // If token refresh failed, abort fetch
+            // Retry the fetch with the new token
+            options.headers = {
+                ...options.headers,
+                "Authorization": `Bearer ${newToken}`,
+            };
+            return fetch(url, options);
+        }
+
+        return response;
+    }
 
     useEffect(() => {
-        fetch(`https://galwinapp-c654a544b729.herokuapp.com/track/${loggedUser.userid}/${currentDateView.getMonth() + 1}-${currentDateView.getDate()}-${currentDateView.getFullYear()}`, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${loggedUser.token}`,
-                "CSRF-Token": csrfToken // Include CSRF token in headers
-            },
-            credentials: 'include'
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log("from diet.jsx:", data);
-            if (Array.isArray(data)) {
-                setItems(data); // Ensure the data is an array
+        const fetchData = async () => {
+            const response = await fetchWithTokenRefresh(
+                `https://galwinapp-c654a544b729.herokuapp.com/track/${loggedUser.userid}/${currentDateView.getMonth() + 1}-${currentDateView.getDate()}-${currentDateView.getFullYear()}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${loggedUser.token}`,
+                        "CSRF-Token": csrfToken, // Include CSRF token in headers
+                    },
+                    credentials: 'include',
+                }
+            );
+            if (response) {
+                const data = await response.json();
+                console.log("from diet.jsx:", data);
+                if (Array.isArray(data)) {
+                    setItems(data); // Ensure the data is an array
+                } else {
+                    setItems([]); // Set to empty array if data is not an array
+                }
+                setLoading(false); // Set loading to false after data is fetched
             } else {
-                setItems([]); // Set to empty array if data is not an array
+                setItems([]); // Set to empty array if there's an error
+                setLoading(false); // Set loading to false even if there is an error
             }
-            setLoading(false); // Set loading to false after data is fetched
-        })
-        .catch((err) => {
-            console.log(err);
-            setItems([]); // Set to empty array if there's an error
-            setLoading(false); // Set loading to false even if there is an error
-        });
+        };
+
+        fetchData();
     }, [loggedUser, currentDateView, csrfToken]);
 
     useEffect(() => {
@@ -90,26 +147,23 @@ export default function Diet() {
         });
     };
 
-    function deleteFood(itemId) {
-        return fetch(`https://galwinapp-c654a544b729.herokuapp.com/track/${itemId}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": `Bearer ${loggedUser.token}`,
-                "CSRF-Token": csrfToken // Include CSRF token in headers
-            },
-            credentials: 'include'
-        })
-        .then(response => {
-            if (response.ok) {
-                console.log("Food deleted successfully");
-            } else {
-                throw new Error(`Error deleting food: ${response.statusText}`);
+    async function deleteFood(itemId) {
+        const response = await fetchWithTokenRefresh(
+            `https://galwinapp-c654a544b729.herokuapp.com/track/${itemId}`,
+            {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${loggedUser.token}`,
+                    "CSRF-Token": csrfToken, // Include CSRF token in headers
+                },
+                credentials: 'include',
             }
-        })
-        .catch(error => {
-            console.error("Error deleting food:", error);
-            throw error;
-        });
+        );
+        if (response && response.ok) {
+            console.log("Food deleted successfully");
+        } else {
+            console.error("Error deleting food:", response ? response.statusText : "Unknown error");
+        }
     }
 
     function calculateTotal() {
