@@ -74,7 +74,7 @@ export default defineConfig({
           globPatterns: ['**/*.{js,css,html,png,jpg,svg}'],
           runtimeCaching: [
             {
-              urlPattern: ({ url }) => url.pathname.startsWith('/'),
+              urlPattern: ({ url }) => url.pathname.startsWith('/api'),
               handler: 'CacheFirst',
               options: {
                 cacheName: 'api-cache',
