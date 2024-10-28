@@ -15,7 +15,7 @@ export function useAuth() {
     return null;
   });
 
-  const [csrfToken, setCsrfToken] = useState("");
+  const [csrfToken, setCsrfToken] = useState(""); // State to store CSRF token
 
   // Function to fetch CSRF token
   async function fetchCsrfToken() {
@@ -47,7 +47,7 @@ export function useAuth() {
           "csrf-token": csrfToken
         },
         credentials: 'include',
-        body: JSON.stringify({ userId: parsedUser.userid })
+        body: JSON.stringify({ userId: parsedUser.userid }) // Send userId in the request body
       });
 
       if (response.ok) {
@@ -76,28 +76,28 @@ export function useAuth() {
     }
   }
 
-  // Initialize CSRF token and refresh access token on mount
+  // Fetch CSRF token on initial mount
   useEffect(() => {
-    async function initializeAuth() {
-      await fetchCsrfToken();
-      
-      const storedUser = localStorage.getItem("app-user");
-      if (storedUser) {
-        const parsedUser = JSON.parse(storedUser);
-        await refreshAccessToken(parsedUser); // Immediately refresh access token
-      }
-    }
+    fetchCsrfToken();
+  }, []);
 
-    initializeAuth();
-  }, []); // Run on initial mount only
-
-  // Periodically refresh token every minute
+  // Check and refresh tokens periodically
   useEffect(() => {
     const interval = setInterval(async () => {
       const storedUser = localStorage.getItem("app-user");
       if (storedUser) {
         const parsedUser = JSON.parse(storedUser);
-        await refreshAccessToken(parsedUser); // Refresh token every minute
+        const accessToken = parsedUser?.token;
+
+        if (accessToken) {
+          const now = Math.floor(Date.now() / 1000);
+          const { exp: accessTokenExp } = jwtDecode(accessToken);
+          const accessTokenMinutesLeft = (accessTokenExp - now) / 60;
+
+          if (accessTokenMinutesLeft <= 1) { // If the access token is about to expire in the next minute
+            await refreshAccessToken(parsedUser);
+          }
+        }
       }
     }, 60 * 1000); // Check every minute
 
