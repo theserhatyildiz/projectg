@@ -193,7 +193,7 @@ app.post('/login', async (req, res) => {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
           sameSite: 'Strict',
-          maxAge: 5 * 60 * 1000 // 2 minutes in milliseconds
+          maxAge: 30 * 24 * 60 * 60 * 1000 // 2 minutes in milliseconds
         });
 
         res.send({
@@ -266,7 +266,7 @@ app.post('/refresh-token', async (req, res) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'Strict',
-        maxAge: 5 * 60 * 1000 // 2 minutes in milliseconds
+        maxAge: 30 * 24 * 60 * 60 * 1000 // 2 minutes in milliseconds
       });
 
       res.send({ token: newToken });
