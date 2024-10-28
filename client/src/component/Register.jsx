@@ -26,7 +26,7 @@ export default function Register() {
 
     async function fetchCsrfToken() {
         try {
-            const response = await fetch("http://localhost:8000/csrf-token", { credentials: 'include' });
+            const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/csrf-token", { credentials: 'include' });
             const { csrfToken } = await response.json();
             console.log('CSRF Token fetched:', csrfToken);
             if (csrfToken) {
@@ -58,7 +58,7 @@ export default function Register() {
         }
 
         try {
-            const response = await fetch("http://localhost:8000/register", {
+            const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

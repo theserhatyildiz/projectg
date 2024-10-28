@@ -29,7 +29,7 @@ export default function CreateFood() {
   useEffect(() => {
     async function fetchCsrfToken() {
         try {
-            const response = await fetch("http://localhost:8000/csrf-token", { credentials: 'include' });
+            const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/csrf-token", { credentials: 'include' });
             const { csrfToken } = await response.json();
             console.log('CSRF Token fetched:', csrfToken);
             if (csrfToken) {
@@ -62,7 +62,7 @@ export default function CreateFood() {
 
     // ------------------Sending the data to API------------------
 
-    fetch("http://localhost:8000/foods",{
+    fetch("https://galwinapp-84e0263e418c.herokuapp.com/foods",{
         method:"POST",
         body:JSON.stringify(foodDetails),
         headers:{

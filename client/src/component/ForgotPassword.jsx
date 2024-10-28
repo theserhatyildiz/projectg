@@ -36,7 +36,7 @@ export default function ForgotPassword() {
         setLoading(true); // Show loading spinner
 
         // ------------------Sending the data to API------------------
-        fetch("http://localhost:8000/forgotpassword", {
+        fetch("https://galwinapp-84e0263e418c.herokuapp.com/forgotpassword", {
             method: "POST",
             body: JSON.stringify(userCreds),
             headers: {

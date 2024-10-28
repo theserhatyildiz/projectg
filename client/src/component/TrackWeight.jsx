@@ -58,7 +58,7 @@ export default function TrackWeight() {
     useEffect(() => {
         async function fetchCsrfToken() {
             try {
-                const response = await fetch("http://localhost:8000/csrf-token", { credentials: 'include' });
+                const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/csrf-token", { credentials: 'include' });
                 const { csrfToken } = await response.json();
                 console.log('CSRF Token fetched:', csrfToken);
                 if (csrfToken) {
@@ -86,7 +86,7 @@ export default function TrackWeight() {
         // Function to fetch weight entries for a specific month
         const fetchEntriesForMonth = async (month, choice) => { // Pass choice as an argument
             try {
-                const response = await fetch(`http://localhost:8000/weights/${userId}/${year}/${month}?choice=${choice}`, { // Include choice in the URL
+                const response = await fetch(`https://galwinapp-84e0263e418c.herokuapp.com/weights/${userId}/${year}/${month}?choice=${choice}`, { // Include choice in the URL
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${token}`,
@@ -173,7 +173,7 @@ export default function TrackWeight() {
     }
 
     const createWeightEntry = (formData) => {
-        fetch("http://localhost:8000/weights", {
+        fetch("https://galwinapp-84e0263e418c.herokuapp.com/weights", {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
@@ -216,7 +216,7 @@ export default function TrackWeight() {
 
 
     const handleDelete = (entryId) => {
-        fetch(`http://localhost:8000/weights/${entryId}`, {
+        fetch(`https://galwinapp-84e0263e418c.herokuapp.com/weights/${entryId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${loggedData.loggedUser.token}`,
@@ -428,7 +428,7 @@ export default function TrackWeight() {
     const userId = loggedData.loggedUser.userid;
     const token = loggedData.loggedUser.token;
 
-    fetch(`http://localhost:8000/users/${userId}/${newStartDate}`, {
+    fetch(`https://galwinapp-84e0263e418c.herokuapp.com/users/${userId}/${newStartDate}`, {
         method: "PUT",
         headers: {
             "Authorization": `Bearer ${token}`,
@@ -454,7 +454,7 @@ const fetchStartDateFromServer = () => {
     // Fetch the start date from the server
     const userId = loggedData.loggedUser.userid;
     const token = loggedData.loggedUser.token;
-    fetch(`http://localhost:8000/users/${userId}/startdate`, {
+    fetch(`https://galwinapp-84e0263e418c.herokuapp.com/users/${userId}/startdate`, {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${token}`,
@@ -482,7 +482,7 @@ const fetchStartDateFromServer = () => {
 const handleDeleteStartDate = () => {
     const userId = loggedData.loggedUser.userid;
     const token = loggedData.loggedUser.token;
-    fetch(`http://localhost:8000/users/${userId}/startdate`, {
+    fetch(`https://galwinapp-84e0263e418c.herokuapp.com/users/${userId}/startdate`, {
         method: "DELETE",
         headers: {
             "Authorization": `Bearer ${token}`,

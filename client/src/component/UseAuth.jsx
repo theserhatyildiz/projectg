@@ -20,7 +20,7 @@ export function useAuth() {
   // Function to fetch CSRF token
   async function fetchCsrfToken() {
     try {
-      const response = await fetch("http://localhost:8000/csrf-token", { credentials: 'include' });
+      const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/csrf-token", { credentials: 'include' });
       if (response.ok) {
         const { csrfToken } = await response.json();
         console.log('CSRF Token fetched:', csrfToken);
@@ -40,7 +40,7 @@ export function useAuth() {
   // Function to refresh the access token
   async function refreshAccessToken(parsedUser, retries = 3) {
     try {
-      const response = await fetch('http://localhost:8000/refresh-token', {
+      const response = await fetch('https://galwinapp-84e0263e418c.herokuapp.com/refresh-token', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",

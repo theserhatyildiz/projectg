@@ -22,7 +22,7 @@ export default function Account() {
     async function fetchCsrfToken() {
         console.log('Fetching CSRF token...');
         try {
-          const response = await fetch("http://localhost:8000/csrf-token", { credentials: 'include' });
+          const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/csrf-token", { credentials: 'include' });
           const data = await response.json();
           const { csrfToken } = data;
           if (csrfToken) {
@@ -41,7 +41,7 @@ export default function Account() {
 
     const handleNameChange = () => {
     setLoading(true); // Show loading spinner
-    fetch("http://localhost:8000/update-username", {
+    fetch("https://galwinapp-84e0263e418c.herokuapp.com/update-username", {
         method: "POST",
         body: JSON.stringify({ id: loggedData.loggedUser.userid, newName }),
         headers: {
@@ -103,7 +103,7 @@ export default function Account() {
     // To logout from the application
 
     function logout() {
-        fetch('http://localhost:8000/logout', { // Ensure you have the correct URL
+        fetch('https://galwinapp-84e0263e418c.herokuapp.com/logout', { // Ensure you have the correct URL
             method: 'POST',
             headers: {
                 "Authorization": `Bearer ${loggedData.loggedUser.token}`,

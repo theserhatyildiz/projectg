@@ -34,7 +34,7 @@ export default function SearchFood() {
     useEffect(() => {
         async function fetchCsrfToken() {
             try {
-                const response = await fetch("http://localhost:8000/csrf-token", { credentials: 'include' });
+                const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/csrf-token", { credentials: 'include' });
                 const { csrfToken } = await response.json();
                 console.log('CSRF Token fetched:', csrfToken);
                 if (csrfToken) {
@@ -62,7 +62,7 @@ export default function SearchFood() {
                 }
 
                 const [foodsResponse, userFoodsResponse] = await Promise.all([
-                    fetch(`http://localhost:8000/foods/${query}`, {
+                    fetch(`https://galwinapp-84e0263e418c.herokuapp.com/foods/${query}`, {
                         method: "GET",
                         headers: {
                             "Authorization": `Bearer ${loggedData.loggedUser.token}`,
@@ -70,7 +70,7 @@ export default function SearchFood() {
                         },
                         credentials: 'include'
                     }),
-                    fetch(`http://localhost:8000/userfoods/${query}`, {
+                    fetch(`https://galwinapp-84e0263e418c.herokuapp.com/userfoods/${query}`, {
                         method: "GET",
                         headers: {
                             "Authorization": `Bearer ${loggedData.loggedUser.token}`,

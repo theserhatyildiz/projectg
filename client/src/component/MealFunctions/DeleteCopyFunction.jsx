@@ -14,7 +14,7 @@ export default function DeleteCopyFunction({selectedFoods, setFoodsByMeal, mealN
     useEffect(() => {
         async function fetchCsrfToken() {
             try {
-                const response = await fetch("http://localhost:8000/csrf-token", { credentials: 'include' });
+                const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/csrf-token", { credentials: 'include' });
                 const { csrfToken } = await response.json();
                 console.log('CSRF Token fetched:', csrfToken);
                 if (csrfToken) {
@@ -34,7 +34,7 @@ export default function DeleteCopyFunction({selectedFoods, setFoodsByMeal, mealN
     const handleDeleteClick = () => {
         console.log("Selected foods to delete:", selectedFoods);
 
-        fetch(`http://localhost:8000/deleteFoods`, {
+        fetch(`https://galwinapp-84e0263e418c.herokuapp.com/deleteFoods`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function DeleteCopyFunction({selectedFoods, setFoodsByMeal, mealN
             console.log("Copied items with IDs:", copiedItemsWithId);
             const convertedCopyDate = new Date(copyDate).toISOString().slice(0, 10);
 
-            fetch(`http://localhost:8000/track/copy`, {
+            fetch(`https://galwinapp-84e0263e418c.herokuapp.com/track/copy`, {
                 method: "POST",
                 body: JSON.stringify({
                     copiedItems: copiedItemsWithId.map(item => ({

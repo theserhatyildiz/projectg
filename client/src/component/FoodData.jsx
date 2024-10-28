@@ -80,7 +80,7 @@ export default function FoodData(props) {
     useEffect(() => {
         async function fetchCsrfToken() {
             try {
-                const response = await fetch("http://localhost:8000/csrf-token", { credentials: 'include' });
+                const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/csrf-token", { credentials: 'include' });
                 const { csrfToken } = await response.json();
                 console.log('CSRF Token fetched:', csrfToken);
                 if (csrfToken) {
@@ -120,7 +120,7 @@ export default function FoodData(props) {
     }
 
     function createFoodItem(trackedItem) {
-        fetch("http://localhost:8000/track", {
+        fetch("https://galwinapp-84e0263e418c.herokuapp.com/track", {
             method: "POST",
             body: JSON.stringify(trackedItem),
             headers: {
@@ -150,7 +150,7 @@ export default function FoodData(props) {
     }
 
     function updateFoodItem(trackedItem) {
-        fetch(`http://localhost:8000/track/${trackedItem.id}`, {
+        fetch(`https://galwinapp-84e0263e418c.herokuapp.com/track/${trackedItem.id}`, {
             method: "PUT",
             body: JSON.stringify(trackedItem),
             headers: {
