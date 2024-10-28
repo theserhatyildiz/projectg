@@ -12,6 +12,7 @@ const sanitizeHtml = require('sanitize-html');
 const { body, validationResult, param } = require('express-validator');
 require('dotenv').config();
 const crypto = require('crypto');
+const path = require('path');
 
 const userModel = require('./models/userModel')
 const foodModel =  require('./models/foodModel')
@@ -1061,6 +1062,26 @@ app.post('/update-username', async (req, res) => {
         res.status(500).json({ success: false, message: 'Kullanıcı adı güncellenirken bir hata oluştu.' });
     }
 });
+
+if (process.env.NODE_ENV === "production") {
+  // Serve the static files from the Vite build directory
+  app.use(express.static(path.join(__dirname, '/client/dist')));
+
+  // Serve the JavaScript file
+  app.get('/assets/index-CW5KkyhG.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '/client/dist/assets/index-CW5KkyhG.js'));
+  });
+
+  // Handle all other routes by serving the index.html file
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/client/dist/index.html'));
+  });
+} else {
+  // In development mode, just return a simple message
+  app.get('/', (req, res) => {
+    res.send('API running');
+  });
+}
 
 app.listen(process.env.PORT || PORT, () => {
     console.log('Server is running !!!')
