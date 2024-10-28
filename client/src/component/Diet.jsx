@@ -26,28 +26,38 @@ export default function Diet() {
     // console.log("Diet items:", { items });
 
       // Refresh token logic
-      useEffect(() => {
+    useEffect(() => {
         const refreshAccessToken = async () => {
             try {
                 const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/refresh-token", {
                     method: "POST",
-                    credentials: 'include' // Send cookies with the request
+                    headers: {
+                        "Content-Type": "application/json",
+                        "csrf-token": csrfToken
+                    },
+                    credentials: 'include'
                 });
-                const data = await response.json();
-                if (data.token) {
-                    // Update the user's access token in context or state
-                    // Assume you have a method to set the token
-                    setAccessToken(data.token); 
-                } else {
-                    console.error("Failed to refresh token:", data.message);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.token) {
+                        const updatedUser = { ...loggedUser, token: data.token };
+                        localStorage.setItem("app-user", JSON.stringify(updatedUser));
+                        setLoggedUser(updatedUser);
+                    }
+                } else if (response.status === 403) {
+                    setLoggedUser(null);
+                    localStorage.removeItem("app-user");
                 }
             } catch (error) {
-                console.error("Error refreshing token:", error);
+                console.error('Error refreshing access token:', error);
             }
         };
 
-        refreshAccessToken();
-    }, []);
+        if (loggedUser) {
+            refreshAccessToken();
+        }
+    }, [csrfToken, loggedUser, setLoggedUser]);
     
 
     useEffect(() => {
