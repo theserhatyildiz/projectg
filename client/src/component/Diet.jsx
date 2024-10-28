@@ -24,40 +24,6 @@ export default function Diet() {
     const [csrfToken, setCsrfToken] = useState(""); // State to store CSRF token
 
     // console.log("Diet items:", { items });
-
-      // Refresh token logic
-    useEffect(() => {
-        const refreshAccessToken = async () => {
-            try {
-                const response = await fetch("https://galwinapp-84e0263e418c.herokuapp.com/refresh-token", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "csrf-token": csrfToken
-                    },
-                    credentials: 'include'
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.token) {
-                        const updatedUser = { ...loggedUser, token: data.token };
-                        localStorage.setItem("app-user", JSON.stringify(updatedUser));
-                        setLoggedUser(updatedUser);
-                    }
-                } else if (response.status === 403) {
-                    setLoggedUser(null);
-                    localStorage.removeItem("app-user");
-                }
-            } catch (error) {
-                console.error('Error refreshing access token:', error);
-            }
-        };
-
-        if (loggedUser) {
-            refreshAccessToken();
-        }
-    }, [csrfToken, loggedUser, setLoggedUser]);
     
 
     useEffect(() => {
