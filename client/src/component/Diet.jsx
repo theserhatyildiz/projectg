@@ -52,7 +52,8 @@ export default function Diet() {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${loggedUser.token}`,
-                "CSRF-Token": csrfToken // Include CSRF token in headers
+                "CSRF-Token": csrfToken, // Include CSRF token in headers
+                "Cache-Control": "no-cache" // Add this line
             },
             credentials: 'include'
         })
