@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGO_URI)
 const app = express();
 app.use(helmet());
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from this origin
+  origin: 'https://galwinapp-84e0263e418c.herokuapp.com/', // Allow requests from this origin
   credentials: true, // Allow cookies and other credentials to be sent
   allowedHeaders: ['Content-Type', 'csrf-token', 'Authorization'], // Allow csrf-token and Authorization headers
 }));
